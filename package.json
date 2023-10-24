@@ -4,8 +4,9 @@
   "description": "Hugo Custom Theme using Tailwind Css Scss With Summery Panel Admin Panel and light/dark theme.",
   "scripts": {
     "npm-check": "npm-check -u",
-    "prestart": "sass assets/scss/main.scss assets/css/style.css",
+    "prestart": "sass assets/scss/main.scss assets/css/custom.css",
     "start": "hugo server --disableFastRender  --noHTTPCache",
+    "dev": "sass assets/scss/main.scss assets/css/custom.css --watch",
     "build": "hugo --minify --cleanDestinationDir"
   },
   "repository": {

@@ -1,18 +1,9 @@
-/* TailwindCSS base styles */
-/* see https://tailwindcss.com/docs/functions-and-directives#tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
-
 /* Site Specific */
 /* put site specific css styles here using the @layer directive */
 /* see https://tailwindcss.com/docs/functions-and-directives#layer */
-@layer components {
-    .welcome-headline {
-        @apply text-sky-600;
-    }
+@import 'colors';
 
+@layer components {
     .primary {
         @apply bg-red-600;
     }
@@ -21,7 +12,13 @@
         @apply bg-red-500;
     }
 
-    .text-light {
-        @apply text-slate-600;
+    .secondry {
+        @apply text-sky-600;
     }
+
+    .secondry:hover {
+        @apply text-sky-500;
+    }
+
+
 }
