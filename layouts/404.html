@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "head.html" . }}
+<style>
+    .bl_page404__el1 {
+        position: absolute;
+        top: 108px;
+        left: 102px;
+        opacity: 1;
+        animation: el1Move 800ms linear infinite;
+        width: 84px;
+        height: 106px;
+        background: url("images/4(1).png") 50% 50% no-repeat;
+        z-index: 2;
+    }
+
+    .bl_page404__el2 {
+        position: absolute;
+        top: 92px;
+        left: 136px;
+        opacity: 1;
+        animation: el2Move 800ms linear infinite;
+        width: 184px;
+        height: 106px;
+        background: url("images/0.png") 50% 50% no-repeat;
+        z-index: 2;
+    }
+
+    .bl_page404__el3 {
+        position: absolute;
+        top: 108px;
+        left: 180px;
+        opacity: 1;
+        animation: el3Move 800ms linear infinite;
+        width: 284px;
+        height: 106px;
+        background: url("images/4(2).png") 50% 50% no-repeat;
+        z-index: 2;
+    }
+
+    @keyframes el1Move {
+        0% {
+            top: 108px;
+            left: 102px;
+            opacity: 1;
+        }
+
+        100% {
+            top: -10px;
+            left: 22px;
+            opacity: 0;
+        }
+    }
+
+    @keyframes el2Move {
+        0% {
+            top: 92px;
+            left: 136px;
+            opacity: 1;
+        }
+
+        100% {
+            top: -10px;
+            left: 108px;
+            opacity: 0;
+        }
+    }
+
+    @keyframes el3Move {
+        0% {
+            top: 108px;
+            left: 180px;
+            opacity: 1;
+        }
+
+        100% {
+            top: 28px;
+            left: 276px;
+            opacity: 0;
+        }
+    }
+</style>
+
+<body class="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+    {{- partial "header.html" . -}}
+    <main class="flex-grow container mx-auto flex items-center justify-center">
+        <div class="text-center">
+            <h1 class="text-4xl font-semibold my-4 ">Error 404. The page does not exist</h1>
+            <p class="text-lg mb-4">Sorry! The page you are looking for cannot be found. Perhaps the page you requested
+                was moved or deleted. It's also possible that you made a small typo when entering the address. Go to the
+                main page.</p>
+            <div class="bl_page404__wrapper relative w-full max-w-md mx-auto">
+                <img src="images/404.png" alt="404.png" class="w-full" />
+                <div class="bl_page404__el1 animate-el1Move"></div>
+                <div class="bl_page404__el2 animate-el2Move"></div>
+                <div class="bl_page404__el3 animate-el3Move"></div>
+                <a href="/"
+                    class="bl_page404__link w-full text-white primary shadow-md rounded-full py-4 text-2xl font-semibold uppercase block text-center mt-4">Go
+                    Home</a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-900 text-white p-6 mt-8">
+        {{- partial "footer.html" . -}}
+    </footer>
+    {{- partial "js.html" . -}}
+</body>
+
+</html>
