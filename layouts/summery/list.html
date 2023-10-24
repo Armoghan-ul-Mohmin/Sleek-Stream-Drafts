@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "head.html" . }}
+
+<body class="flex flex-col min-h-screen light-theme dark:dark-theme">
+    {{- partial "header.html" . -}}
+
+    <header>
+        <h1 class="text-5xl text-center mb-8 underline mt-4 secondry">{{ .Site.Title }} Summary Panel</h1>
+        <div class="container mx-auto grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+            <div class=" primary p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Total Articles</h3>
+                <p class="text-2xl text-center">{{ len .Site.RegularPages }}</p>
+            </div>
+            <div class=" primary p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Total Tags</h3>
+                <p class="text-2xl text-center">{{ len ($.Site.GetPage "taxonomyTerm" "tags").Pages }}</p>
+            </div>
+            <div class=" primary p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Total Sections</h3>
+                <p class="text-2xl text-center">{{ len (where .Site.Pages "Kind" "section") }}</p>
+            </div>
+            <div class=" primary p-4 rounded-lg">
+                <h3 class="text-lg font-semibold">Total Series</h3>
+                <p class="text-2xl text-center">{{ len (where .Site.RegularPages "Type" "series") }}</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container mx-auto">
+            <section class="mt-4 p-3 rounded">
+                <h2 class="text-2xl mb-2 underline">Sections Summary:</h2>
+                <div class="overflow-x-auto">
+                    {{ $sections := slice }}
+                    {{ range .Site.Sections }}
+                    {{ $sectionPages := where $.Site.RegularPages "Section" .Title }}
+                    {{ $sections = $sections | append (dict "title" .Title "permalink" .Permalink "total"
+                    (len $sectionPages)) }}
+                    {{ end }}
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase">No.</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase">Section</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range $index, $section := $sections }}
+                            <tr>
+                                <td class="border-t border-b py-2">{{ add $index 1 }}</td>
+                                <td class="border-t border-b py-2">
+                                    <a href="{{ $section.permalink }}">{{ $section.title }}</a>
+                                </td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div class="container mx-auto">
+            <section class="mt-4 p-3 rounded">
+                <h2 class="text-2xl mb-2 underline">Tags Summary:</h2>
+                <div class="overflow-x-auto">
+                    {{ $tags := slice }}
+                    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+                    {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+                    {{ $tags = $tags | append (dict "name" $name "permalink" .Permalink) }}
+                    {{ end }}
+                    {{ end }}
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase">No.</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase">Tags</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase">Total articles
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range $index, $tag := $tags }}
+                            <tr>
+                                <td class="border-t border-b py-2">{{ add $index 1 }}</td>
+                                <td class="border-t border-b py-2"><a href="{{ $tag.permalink }}">{{ $tag.name }}</a>
+                                </td>
+                                <td class="border-t border-b py-2">{{ len ($.Site.GetPage (printf "/tags/%s"
+                                    $tag.name)).Pages }}</td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+
+    </main>
+
+    <footer class="brand-clr text-light p-6">
+        {{- partial "footer.html" . -}}
+    </footer>
+    {{- partial "js.html" . -}}
+</body>
+
+</html>

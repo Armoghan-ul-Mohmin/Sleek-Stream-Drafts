@@ -10,6 +10,9 @@
 /* see https://tailwindcss.com/docs/functions-and-directives#layer */
 
 @layer components {
+    .brand-clr{
+        @apply bg-gray-900;
+    }
     .primary {
         @apply bg-red-600;
     }
@@ -26,5 +29,27 @@
         @apply text-sky-500;
     }
 
+    .text-light {
+        @apply text-slate-50;
+    }
 
+    .light-bg{
+        @apply bg-slate-50;
+    }
+
+    .text-dark{
+        @apply text-slate-800;
+    }
+
+    .dark-bg{
+        @apply bg-slate-800 ;
+    }
+
+    .light-theme{
+        @apply text-slate-800 bg-slate-50;
+    }
+
+    .dark-theme{
+        @apply text-slate-50 bg-slate-800;
+    }
 }
