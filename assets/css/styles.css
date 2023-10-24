@@ -10,9 +10,10 @@
 /* see https://tailwindcss.com/docs/functions-and-directives#layer */
 
 @layer components {
-    .brand-clr{
-        @apply bg-gray-900;
+    .brand-clr {
+        @apply bg-gray-800;
     }
+
     .primary {
         @apply bg-red-600;
     }
@@ -33,23 +34,23 @@
         @apply text-slate-50;
     }
 
-    .light-bg{
+    .light-bg {
         @apply bg-slate-50;
     }
 
-    .text-dark{
+    .text-dark {
         @apply text-slate-800;
     }
 
-    .dark-bg{
-        @apply bg-slate-800 ;
+    .dark-bg {
+        @apply bg-slate-800;
     }
 
-    .light-theme{
+    .light-theme {
         @apply text-slate-800 bg-slate-50;
     }
 
-    .dark-theme{
+    .dark-theme {
         @apply text-slate-50 bg-slate-800;
     }
 }
