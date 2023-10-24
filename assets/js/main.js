@@ -1,0 +1,1 @@
+console.log('This Theme is Created by Armoghan-ul-Mohmin Using Hugo.');
