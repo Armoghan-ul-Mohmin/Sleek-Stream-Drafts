@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="flex flex-wrap">
+        <!-- Newsletter (on mobile) -->
+        <div class="w-full sm:w-1/2 md:w-35 lg:w-35 p-6 order-2 sm:order-1 hidden sm:block">
+            <header class="p-4 justify-center items-center content-center">
+                <div class="flex flex-wrap justify-between gap-6">
+                    <ul class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+                        <li>
+                            <h3 class="text-2xl uppercase">Quick Links</h3>
+                            <hr class="my-2">
+                        </li>
+
+                        <ul id="nav-menu" class="sm:flex flex-col sm:w-auto hidden mt-2 sm:mt-0 sm:space-x-2">
+                            <li class="mb-2">
+                                <a href="/" class="hover:text-sky-500 dark:hover:text-sky-500"> Home</a>
+                            </li>
+                            {{ with .Site.GetPage "/about" }}
+                            <li class="mb-2">
+                                <a href="{{ .Permalink }}" class="hover:text-sky-500 dark:hover:text-sky-500">{{ .Title
+                                    }}</a>
+                            </li>
+                            {{ end }}
+                            {{ range .Site.Sections }}
+                            <li class="mb-2">
+                                <a href="{{ .Permalink }}" class="hover:text-sky-500 dark:hover:text-sky-500">{{ .Title
+                                    }}</a>
+                            </li>
+                            {{ end }}
+                        </ul>
+
+                    </ul>
+                </div>
+            </header>
+        </div>
+
+
+        <!-- Content -->
+        <div class="w-full sm:w-1/2 md:w-65 lg:w-65 p-6 order-1 sm:order-2">
+            <aside class="p-4">
+                <div class="category">
+                    <h2 class="text-3xl mb-4 font-semibold text-light">Subscribe to Newsletter</h2>
+                    <hr class="my-3">
+                    <form class="mb-4">
+                        <div
+                            class="flex items-center rounded-full bg-blue-100 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                            <input type="email" placeholder="Enter your email"
+                                class="w-full bg-transparent text-light border-0" required>
+                            <button type="submit"
+                                class="px-4 py-2 primary rounded-full transform transition hover:scale-105 focus:outline-none text-light">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<hr class="mb-4 border-gray-600">
+<div class="text-center text-gray-400 text-xl">
+    <small>
+        &copy; <span id="copyright"> <noscript>{{ now.Format "2006" }}</noscript></span> - {{ .Site.Title }} All rights
+        reserved.
+    </small>
+
+</div>
+
+<button id="scrollToTop"
+    class="fixed bottom-6 right-6 primary text-light px-4 py-2 rounded-full shadow-lg hidden transition-transform hover:scale-105"
+    onclick="scrollToTop()">
+    ↑
+</button>
+
+<script defer>
+    // Function to scroll to the top of the page smoothly
+
+    function scrollToTop() {
+        if (window.scrollY !== 0) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Show the "scrollToTop" button when scrolling down the page
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 200) { // You can adjust this value to control when the button appears
+            document.getElementById('scrollToTop').style.display = 'block';
+        } else {
+            document.getElementById('scrollToTop').style.display = 'none';
+        }
+    });
+</script>
